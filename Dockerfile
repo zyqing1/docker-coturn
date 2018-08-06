@@ -5,23 +5,13 @@ ENV COTURN_VER=4.5.0.7
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-    build-essential \
-    curl \
-    libtool \
-    libssl-dev \
-    libevent-dev \
-    libyajl-dev	\
-    libcurl4-openssl-dev \
-    libsqlite3-dev \
-    && cd /tmp \
-    && curl -skL https://github.com/coturn/coturn/archive/${COTURN_VER}.tar.gz -o coturn.tar.gz \
-    && tar xzf coturn.tar.gz \
-    && cd coturn-${COTURN_VER} \
-    && ./configure && make && make install \
+    coturn \
     && mkdir -p /opt/coturn/etc/ \
     && cp /usr/local/etc/turnserver.conf.default /opt/coturn/etc/turnserver.conf \
     && cd / && rm -rf /tmp/* \
     && apt-get remove --purge --auto-remove -y  build-essential
+    && apt-get clean -y \
+    && rm -rf /var/lib/apt/lists/*
 
 ADD entrypoint.sh /entrypoint.sh
 
