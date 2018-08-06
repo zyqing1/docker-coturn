@@ -9,7 +9,7 @@ RUN apt-get update \
     && mkdir -p /opt/coturn/etc/ \
     && cp /usr/local/etc/turnserver.conf.default /opt/coturn/etc/turnserver.conf \
     && cd / && rm -rf /tmp/* \
-    && apt-get remove --purge --auto-remove -y  build-essential
+    && apt-get remove --purge --auto-remove -y  build-essential \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
 
