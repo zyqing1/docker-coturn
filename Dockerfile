@@ -7,7 +7,6 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends \
     coturn \
     && mkdir -p /opt/coturn/etc/ \
-    && cp /usr/local/etc/turnserver.conf.default /opt/coturn/etc/turnserver.conf \
     && cd / && rm -rf /tmp/* \
     && apt-get remove --purge --auto-remove -y  build-essential \
     && apt-get clean -y \
